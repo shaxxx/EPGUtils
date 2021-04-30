@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ConfigMaker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ChannelsXmlFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">configmaker.channels.xml</Value>
+    </Setting>
+    <Setting Name="OutputDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">output</Value>
+    </Setting>
+    <Setting Name="SiteIniPack" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">siteini.pack</Value>
+    </Setting>
+    <Setting Name="SiteIniUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">siteini.user</Value>
+    </Setting>
+    <Setting Name="SitePackUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.webgrabplus.com/sites/default/files/download/ini/SiteIniPack_current.zip</Value>
+    </Setting>
+    <Setting Name="UserConfigSubdirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">configurations</Value>
+    </Setting>
+    <Setting Name="WebGrabConfigFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WebGrab++.config.xml</Value>
+    </Setting>
+    <Setting Name="WebGrabExePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Program Files (x86)\WebGrab+Plus\bin\WebGrab+Plus.exe</Value>
+    </Setting>
+    <Setting Name="WorkingDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

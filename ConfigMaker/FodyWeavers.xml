@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Weavers>
+  <Costura>
+    <ExcludeAssemblies>
+      DevExpress.XtraPrinting.v16.1.resources
+      DevExpress.XtraGrid.v16.1.Core.resources
+      DevExpress.XtraLayout.v16.1.Core.resources
+      DevExpress.XtraNavBar.v16.1.Core.resources
+      DevExpress.XtraPrinting.v16.1.Core.resources
+      DevExpress.Pdf.v16.1.Core.resources
+      DevExpress.Pdf.v16.1.Core.resources
+      DevExpress.RichEdit.v16.1.Core.resources
+      DevExpress.Office.v16.1.Core.resources
+      DevExpress.XtraTreeList.v16.1.resources
+      DevExpress.XtraNavBar.v16.1.resources
+      DevExpress.XtraLayout.v16.1.resources
+      DevExpress.XtraGrid.v16.1.resources
+      DevExpress.XtraEditors.v16.1.resources
+      DevExpress.XtraBars.v16.1.resources
+      DevExpress.Utils.v16.1.resources
+      DevExpress.Sparkline.v16.1.Core.resources
+      DevExpress.Data.v16.1.resources
+      DevExpress.Printing.v16.1.Core.resources
+    </ExcludeAssemblies>
+  </Costura>
+</Weavers>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site generator-info-name="WebGrab+Plus/w MDB &amp; REX Postprocess -- version  V2.0 -- Jan van Straaten" site="m1film.hr">
+  <channels>
+    <channel update="i" site="test.com" site_id="id1" xmltv_id="Channel1">Channel 1</channel>
+    <channel update="i" site="test.com" site_id="id2" xmltv_id="Channel2">Channel 2</channel>
+  </channels>
+</site>

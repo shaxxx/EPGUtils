@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <log4net>
+    <appender name="FileAppender" type="log4net.Appender.RollingFileAppender">
+      <file type="log4net.Util.PatternString" value="ConfigMaker.log" />
+      <appendToFile value="true" />
+      <rollingStyle value="Size" />
+      <maxSizeRollBackups value="1" />
+      <maximumFileSize value="3MB" />
+      <staticLogFileName value="true" />
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date [%property{log4net:HostName}] [%thread] %-5level - [ConfigMaker] %message%newline" />
+      </layout>
+    </appender>
+    <appender name="TraceAppender" type="log4net.Appender.TraceAppender">
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date [%thread] %-5level - [%logger] %message%newline" />
+      </layout>
+    </appender>
+    <appender name="UdpAppender" type="log4net.Appender.UdpAppender">
+      <param name="RemoteAddress" value="127.0.0.1" />
+      <param name="RemotePort" value="8081" />
+      <layout type="log4net.Layout.PatternLayout"
+          value="{%level}%date{MM/dd HH:mm:ss} - %message" />
+    </appender>
+    <logger name="ConfigMaker">
+      <!--set level to "ALL" for debug purposes
+      set level to "INFO" to get only INFO and WARN messages-->
+      <level value="INFO" />
+      <appender-ref ref="FileAppender" />
+    </logger>
+  </log4net>
+</configuration>

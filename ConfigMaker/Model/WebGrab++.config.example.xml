@@ -1,0 +1,32 @@
+﻿<?xml version="1.0"?>
+<settings>
+   
+  <!-- for detailed info about the settings see http://webgrabplus.com/documentation/configuration/webgrabconfigxml 
+  and http://webgrabplus.com/sites/default/files/downloads/Misc/Documented_Configuration_Files.zip -->
+   
+  <filename>guide.xml</filename>
+  <mode>f</mode>
+  <postprocess grab="y" run="n">rex</postprocess>
+  <postprocess grab="y" run="n">mdb</postprocess>
+  <user-agent>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 Edg/79.0.309.71</user-agent>
+  <decryptkey site="site-name">decrypt_userkey</decryptkey>
+  <decryptkey site="site-name2">decrypt_userkey2</decryptkey>
+  <license wg-username="your webgrab+plus username" registered-email="your registered email address" password="your license password">f</license>
+  <logging>on</logging>
+  <retry channel-delay="5" index-delay="1" show-delay="1" time-out="5">4</retry>
+  <proxy password="pwd2J" user="jan">192.168.2.4:8080</proxy>
+  <timespan>0,16:20</timespan>
+  <update>f</update>
+  <skip>12,0</skip>
+  <!--
+            Replace the next dummy channel entry with the channels you want.
+			You can look into the installed siteini.pack folder on your computer
+  
+            For the latest version,
+            see http://webgrabplus.com/epg-channels for the available sites/channels
+  -->
+  
+  <channel site="dummy" site_id="xx" update="i" xmltv_id="Example">Example</channel>
+  <channel site="dummy2" site_id="xy" update="i" xmltv_id="Example2">Example2</channel>
+ 
+</settings>
