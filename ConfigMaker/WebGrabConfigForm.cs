@@ -96,27 +96,16 @@ namespace ConfigMaker
             {
                 foreach (var item in config.postprocess)
                 {
-                    if (string.IsNullOrEmpty(item.Value))
+                    chkMdbRun.Checked = chkMdbRun.Checked || XmlBool(item.run ?? "y");
+                    chkMdbGrab.Checked = chkMdbGrab.Checked || XmlBool(item.grab ?? "y");
+                    var p = item.Value.ToLower();
+                    if (p == "mdb")
                     {
-                        chkMdbRun.Checked = XmlBool(item.run ?? "y");
-                        chkMdbGrab.Checked = XmlBool(item.grab ?? "y");
-                        chkRexGrab.Checked = XmlBool(item.grab ?? "y");
-                        chkRexRun.Checked = XmlBool(item.run ?? "y");
-                        break;
+                        comboPostProcess.SelectedIndex = 1;
                     }
-                    else
+                    else if (p == "rex" && comboPostProcess.SelectedIndex == -1)
                     {
-                        var p = item.Value.ToLower();
-                        if (p == "mdb")
-                        {
-                            chkMdbRun.Checked = XmlBool(item.run ?? "y");
-                            chkMdbGrab.Checked = XmlBool(item.grab ?? "y");
-                        }
-                        else if (p == "rex")
-                        {
-                            chkRexRun.Checked = XmlBool(item.run ?? "y");
-                            chkRexGrab.Checked = XmlBool(item.grab ?? "y");
-                        }
+                        comboPostProcess.SelectedIndex = 0;
                     }
                 }
             }
@@ -347,21 +336,17 @@ namespace ConfigMaker
 
         private void UpdatePostProcess()
         {
-            if ((chkMdbGrab.Checked == chkRexGrab.Checked) && (chkMdbRun.Checked == chkRexRun.Checked))
+            config.postprocess = new BindingList<settingsPostprocess>();
+            config.postprocess.Add(new settingsPostprocess() { grab = chkMdbGrab.Checked ? "y" : "n", run = chkMdbRun.Checked ? "y" : "n", Value = string.Empty });
+            if (comboPostProcess.SelectedIndex > -1)
             {
-                config.postprocess = new BindingList<settingsPostprocess>();
-                config.postprocess.Add(new settingsPostprocess() { grab = chkMdbGrab.Checked ? "y" : "n", run = chkMdbRun.Checked ? "y" : "n", Value = null });
-            }
-            else
-            {
-                config.postprocess = new BindingList<settingsPostprocess>();
-                if (chkMdbRun.Checked || chkMdbGrab.Checked)
+                if (comboPostProcess.SelectedIndex == 0)
                 {
-                    config.postprocess.Add(new settingsPostprocess() { grab = chkMdbGrab.Checked ? "y" : "n", run = chkMdbRun.Checked ? "y" : "n", Value = "mdb" });
+                    config.postprocess.First().Value = "rex";
                 }
-                if (chkRexRun.Checked || chkRexGrab.Checked)
+                else if (comboPostProcess.SelectedIndex == 1)
                 {
-                    config.postprocess.Add(new settingsPostprocess() { grab = chkRexGrab.Checked ? "y" : "n", run = chkRexRun.Checked ? "y" : "n", Value = "rex" });
+                    config.postprocess.First().Value = "mdb";
                 }
             }
         }
@@ -451,12 +436,16 @@ namespace ConfigMaker
                 && !string.IsNullOrEmpty(txtLicenseEmail.Text))
             {
                 config.license = new settingsLicense();
-                config.license.wgusername = txtUsername.Text;
-                config.license.password = txtPassword.Text;
+                config.license.wgusername = txtLicenseUsername.Text;
+                config.license.password = txtLicensePassword.Text;
                 config.license.registeredemail = txtLicenseEmail.Text;
                 if (chkLicenseForce.Checked)
                 {
                     config.license.Value = "f";
+                }
+                else
+                {
+                    config.license.Value = string.Empty;
                 }
             }
             else
@@ -680,7 +669,7 @@ namespace ConfigMaker
                     valid = false;
                 }
             }
-            valid = valid && ValidateLicenseInfo();          
+            valid = valid && ValidateLicenseInfo();
             return valid;
         }
 
@@ -688,11 +677,12 @@ namespace ConfigMaker
         {
             bool valid = true;
             if (
-                !string.IsNullOrEmpty(txtLicenseEmail.Text) 
-                || !string.IsNullOrEmpty(txtLicenseUsername.Text) 
+                !string.IsNullOrEmpty(txtLicenseEmail.Text)
+                || !string.IsNullOrEmpty(txtLicenseUsername.Text)
                 || !string.IsNullOrEmpty(txtLicensePassword.Text))
             {
-                if (string.IsNullOrEmpty(txtLicenseEmail.Text)){
+                if (string.IsNullOrEmpty(txtLicenseEmail.Text))
+                {
                     txtLicenseEmail.ErrorText = "Invalid license email";
                     valid = false;
                 }
@@ -720,5 +710,12 @@ namespace ConfigMaker
             return false;
         }
 
+        private void comboPostProcess_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)
+            {
+                comboPostProcess.EditValue = null;
+            }
+        }
     }
 }

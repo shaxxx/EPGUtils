@@ -14,7 +14,7 @@
   <retry time-out="5">4</retry>
   <timespan>0</timespan>
   <update>f</update>
-
+  <skip>12,0</skip>
   <!--
             Replace the next dummy channel entry with the channels you want.
 			You can look into the installed siteini.pack folder on your computer

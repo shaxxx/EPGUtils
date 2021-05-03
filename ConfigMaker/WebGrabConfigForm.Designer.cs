@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WebGrabConfigForm));
             this.lc = new DevExpress.XtraLayout.LayoutControl();
+            this.comboPostProcess = new DevExpress.XtraEditors.ComboBoxEdit();
             this.grid = new DevExpress.XtraGrid.GridControl();
             this.gv = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colsite = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,8 +58,6 @@
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.txtUsername = new DevExpress.XtraEditors.TextEdit();
             this.txtProxyAddress = new DevExpress.XtraEditors.TextEdit();
-            this.chkRexGrab = new DevExpress.XtraEditors.CheckEdit();
-            this.chkRexRun = new DevExpress.XtraEditors.CheckEdit();
             this.chkMdbGrab = new DevExpress.XtraEditors.CheckEdit();
             this.chkMdbRun = new DevExpress.XtraEditors.CheckEdit();
             this.chkWget = new DevExpress.XtraEditors.CheckEdit();
@@ -75,12 +73,10 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcgMdb = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lcgPostprocess = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcgRex = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lcPostProcessCombo = new DevExpress.XtraLayout.LayoutControlItem();
             this.lgProxy = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -121,8 +117,10 @@
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.lc)).BeginInit();
             this.lc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboPostProcess.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTimeSpanTime.Properties)).BeginInit();
@@ -147,8 +145,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProxyAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkRexGrab.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkRexRun.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMdbGrab.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMdbRun.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkWget.Properties)).BeginInit();
@@ -164,12 +160,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgMdb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgPostprocess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgRex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcPostProcessCombo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lgProxy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
@@ -208,11 +202,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // lc
             // 
             this.lc.AllowCustomization = false;
+            this.lc.Controls.Add(this.comboPostProcess);
             this.lc.Controls.Add(this.grid);
             this.lc.Controls.Add(this.txtTimeSpanTime);
             this.lc.Controls.Add(this.txtTimeSpanDays);
@@ -237,8 +233,6 @@
             this.lc.Controls.Add(this.txtPassword);
             this.lc.Controls.Add(this.txtUsername);
             this.lc.Controls.Add(this.txtProxyAddress);
-            this.lc.Controls.Add(this.chkRexGrab);
-            this.lc.Controls.Add(this.chkRexRun);
             this.lc.Controls.Add(this.chkMdbGrab);
             this.lc.Controls.Add(this.chkMdbRun);
             this.lc.Controls.Add(this.chkWget);
@@ -257,12 +251,30 @@
             this.lc.TabIndex = 0;
             this.lc.Text = "layoutControl1";
             // 
+            // comboPostProcess
+            // 
+            this.comboPostProcess.Location = new System.Drawing.Point(287, 140);
+            this.comboPostProcess.Name = "comboPostProcess";
+            this.comboPostProcess.Properties.AutoComplete = false;
+            this.comboPostProcess.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.comboPostProcess.Properties.Items.AddRange(new object[] {
+            "rex",
+            "mdb"});
+            this.comboPostProcess.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboPostProcess.Size = new System.Drawing.Size(81, 20);
+            this.comboPostProcess.StyleController = this.lc;
+            this.comboPostProcess.TabIndex = 33;
+            this.comboPostProcess.ToolTip = "This setting will change the global update behaviour.";
+            this.comboPostProcess.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.comboPostProcess_ButtonClick);
+            // 
             // grid
             // 
-            this.grid.Location = new System.Drawing.Point(17, 591);
+            this.grid.Location = new System.Drawing.Point(17, 592);
             this.grid.MainView = this.gv;
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(457, 113);
+            this.grid.Size = new System.Drawing.Size(457, 112);
             this.grid.TabIndex = 36;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv});
@@ -301,7 +313,7 @@
             // 
             // txtTimeSpanTime
             // 
-            this.txtTimeSpanTime.Location = new System.Drawing.Point(217, 429);
+            this.txtTimeSpanTime.Location = new System.Drawing.Point(217, 430);
             this.txtTimeSpanTime.Name = "txtTimeSpanTime";
             this.txtTimeSpanTime.Properties.Mask.EditMask = "\\d{1,2}:\\d{1,2}";
             this.txtTimeSpanTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -313,7 +325,7 @@
             // 
             // txtTimeSpanDays
             // 
-            this.txtTimeSpanDays.Location = new System.Drawing.Point(86, 429);
+            this.txtTimeSpanDays.Location = new System.Drawing.Point(86, 430);
             this.txtTimeSpanDays.Name = "txtTimeSpanDays";
             this.txtTimeSpanDays.Properties.Mask.EditMask = "\\d{1,2}";
             this.txtTimeSpanDays.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -325,7 +337,7 @@
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(424, 191);
+            this.txtPort.Location = new System.Drawing.Point(424, 192);
             this.txtPort.Name = "txtPort";
             this.txtPort.Properties.Mask.EditMask = "\\d{0,5}";
             this.txtPort.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -345,7 +357,7 @@
             // 
             // chkLogging
             // 
-            this.chkLogging.Location = new System.Drawing.Point(252, 539);
+            this.chkLogging.Location = new System.Drawing.Point(252, 540);
             this.chkLogging.Name = "chkLogging";
             this.chkLogging.Properties.Caption = "Logging";
             this.chkLogging.Size = new System.Drawing.Size(222, 19);
@@ -354,7 +366,7 @@
             // 
             // comboUpdate
             // 
-            this.comboUpdate.Location = new System.Drawing.Point(86, 539);
+            this.comboUpdate.Location = new System.Drawing.Point(86, 540);
             this.comboUpdate.Name = "comboUpdate";
             this.comboUpdate.Properties.AutoComplete = false;
             this.comboUpdate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -376,7 +388,7 @@
             // 
             // chkLicenseForce
             // 
-            this.chkLicenseForce.Location = new System.Drawing.Point(253, 505);
+            this.chkLicenseForce.Location = new System.Drawing.Point(253, 506);
             this.chkLicenseForce.Name = "chkLicenseForce";
             this.chkLicenseForce.Properties.Caption = "Force check";
             this.chkLicenseForce.Size = new System.Drawing.Size(221, 19);
@@ -385,7 +397,7 @@
             // 
             // txtLicenseEmail
             // 
-            this.txtLicenseEmail.Location = new System.Drawing.Point(86, 505);
+            this.txtLicenseEmail.Location = new System.Drawing.Point(86, 506);
             this.txtLicenseEmail.Name = "txtLicenseEmail";
             this.txtLicenseEmail.Properties.Mask.EditMask = "[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
             this.txtLicenseEmail.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -396,7 +408,7 @@
             // 
             // txtLicensePassword
             // 
-            this.txtLicensePassword.Location = new System.Drawing.Point(322, 481);
+            this.txtLicensePassword.Location = new System.Drawing.Point(322, 482);
             this.txtLicensePassword.Name = "txtLicensePassword";
             this.txtLicensePassword.Size = new System.Drawing.Size(152, 20);
             this.txtLicensePassword.StyleController = this.lc;
@@ -405,7 +417,7 @@
             // 
             // txtLicenseUsername
             // 
-            this.txtLicenseUsername.Location = new System.Drawing.Point(86, 481);
+            this.txtLicenseUsername.Location = new System.Drawing.Point(86, 482);
             this.txtLicenseUsername.Name = "txtLicenseUsername";
             this.txtLicenseUsername.Size = new System.Drawing.Size(150, 20);
             this.txtLicenseUsername.StyleController = this.lc;
@@ -414,29 +426,29 @@
             // 
             // chkNoSkip
             // 
-            this.chkNoSkip.Location = new System.Drawing.Point(283, 377);
+            this.chkNoSkip.Location = new System.Drawing.Point(310, 378);
             this.chkNoSkip.Name = "chkNoSkip";
             this.chkNoSkip.Properties.Caption = "No skip";
-            this.chkNoSkip.Size = new System.Drawing.Size(123, 19);
+            this.chkNoSkip.Size = new System.Drawing.Size(105, 19);
             this.chkNoSkip.StyleController = this.lc;
             this.chkNoSkip.TabIndex = 27;
             this.chkNoSkip.CheckedChanged += new System.EventHandler(this.chkNoSkip_CheckedChanged);
             // 
             // txtSkipMinMinutes
             // 
-            this.txtSkipMinMinutes.Location = new System.Drawing.Point(216, 377);
+            this.txtSkipMinMinutes.Location = new System.Drawing.Point(216, 378);
             this.txtSkipMinMinutes.Name = "txtSkipMinMinutes";
             this.txtSkipMinMinutes.Properties.Mask.EditMask = "\\d{1,2}";
             this.txtSkipMinMinutes.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtSkipMinMinutes.Properties.Mask.ShowPlaceHolders = false;
-            this.txtSkipMinMinutes.Size = new System.Drawing.Size(50, 20);
+            this.txtSkipMinMinutes.Size = new System.Drawing.Size(77, 20);
             this.txtSkipMinMinutes.StyleController = this.lc;
             this.txtSkipMinMinutes.TabIndex = 26;
             this.txtSkipMinMinutes.ToolTip = "min. number of minutes a show should be before it is skipped";
             // 
             // txtSkipMaxHours
             // 
-            this.txtSkipMaxHours.Location = new System.Drawing.Point(76, 377);
+            this.txtSkipMaxHours.Location = new System.Drawing.Point(76, 378);
             this.txtSkipMaxHours.Name = "txtSkipMaxHours";
             this.txtSkipMaxHours.Properties.Mask.EditMask = "\\d{1,2}";
             this.txtSkipMaxHours.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -448,7 +460,7 @@
             // 
             // txtTimeOut
             // 
-            this.txtTimeOut.Location = new System.Drawing.Point(225, 325);
+            this.txtTimeOut.Location = new System.Drawing.Point(225, 326);
             this.txtTimeOut.Name = "txtTimeOut";
             this.txtTimeOut.Properties.Mask.EditMask = "\\d{0,3}";
             this.txtTimeOut.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -460,7 +472,7 @@
             // 
             // txtShowDelay
             // 
-            this.txtShowDelay.Location = new System.Drawing.Point(81, 325);
+            this.txtShowDelay.Location = new System.Drawing.Point(81, 326);
             this.txtShowDelay.Name = "txtShowDelay";
             this.txtShowDelay.Properties.Mask.EditMask = "\\d{0,3}";
             this.txtShowDelay.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -472,7 +484,7 @@
             // 
             // txtIndexDelay
             // 
-            this.txtIndexDelay.Location = new System.Drawing.Point(358, 301);
+            this.txtIndexDelay.Location = new System.Drawing.Point(358, 302);
             this.txtIndexDelay.Name = "txtIndexDelay";
             this.txtIndexDelay.Properties.Mask.EditMask = "\\d{0,3}";
             this.txtIndexDelay.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -485,7 +497,7 @@
             // txtChannelDelay
             // 
             this.txtChannelDelay.EditValue = "";
-            this.txtChannelDelay.Location = new System.Drawing.Point(225, 301);
+            this.txtChannelDelay.Location = new System.Drawing.Point(225, 302);
             this.txtChannelDelay.Name = "txtChannelDelay";
             this.txtChannelDelay.Properties.Mask.EditMask = "\\d{0,3}";
             this.txtChannelDelay.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -497,7 +509,7 @@
             // 
             // txtRetryTimes
             // 
-            this.txtRetryTimes.Location = new System.Drawing.Point(81, 301);
+            this.txtRetryTimes.Location = new System.Drawing.Point(81, 302);
             this.txtRetryTimes.Name = "txtRetryTimes";
             this.txtRetryTimes.Properties.Mask.EditMask = "\\d{1,2}";
             this.txtRetryTimes.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -509,7 +521,7 @@
             // 
             // chkRandom
             // 
-            this.chkRandom.Location = new System.Drawing.Point(407, 249);
+            this.chkRandom.Location = new System.Drawing.Point(407, 250);
             this.chkRandom.Name = "chkRandom";
             this.chkRandom.Properties.Caption = "Random";
             this.chkRandom.Size = new System.Drawing.Size(67, 19);
@@ -519,7 +531,7 @@
             // 
             // txtUserAgent
             // 
-            this.txtUserAgent.Location = new System.Drawing.Point(77, 249);
+            this.txtUserAgent.Location = new System.Drawing.Point(77, 250);
             this.txtUserAgent.Name = "txtUserAgent";
             this.txtUserAgent.Size = new System.Drawing.Size(313, 20);
             this.txtUserAgent.StyleController = this.lc;
@@ -527,7 +539,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(383, 215);
+            this.txtPassword.Location = new System.Drawing.Point(383, 216);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(91, 20);
             this.txtPassword.StyleController = this.lc;
@@ -535,7 +547,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(74, 215);
+            this.txtUsername.Location = new System.Drawing.Point(74, 216);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(237, 20);
             this.txtUsername.StyleController = this.lc;
@@ -543,36 +555,18 @@
             // 
             // txtProxyAddress
             // 
-            this.txtProxyAddress.Location = new System.Drawing.Point(74, 191);
+            this.txtProxyAddress.Location = new System.Drawing.Point(74, 192);
             this.txtProxyAddress.Name = "txtProxyAddress";
             this.txtProxyAddress.Size = new System.Drawing.Size(304, 20);
             this.txtProxyAddress.StyleController = this.lc;
             this.txtProxyAddress.TabIndex = 14;
             // 
-            // chkRexGrab
-            // 
-            this.chkRexGrab.Location = new System.Drawing.Point(370, 140);
-            this.chkRexGrab.Name = "chkRexGrab";
-            this.chkRexGrab.Properties.Caption = "Grab";
-            this.chkRexGrab.Size = new System.Drawing.Size(104, 19);
-            this.chkRexGrab.StyleController = this.lc;
-            this.chkRexGrab.TabIndex = 13;
-            // 
-            // chkRexRun
-            // 
-            this.chkRexRun.Location = new System.Drawing.Point(255, 140);
-            this.chkRexRun.Name = "chkRexRun";
-            this.chkRexRun.Properties.Caption = "Run";
-            this.chkRexRun.Size = new System.Drawing.Size(111, 19);
-            this.chkRexRun.StyleController = this.lc;
-            this.chkRexRun.TabIndex = 12;
-            // 
             // chkMdbGrab
             // 
-            this.chkMdbGrab.Location = new System.Drawing.Point(133, 140);
+            this.chkMdbGrab.Location = new System.Drawing.Point(120, 140);
             this.chkMdbGrab.Name = "chkMdbGrab";
             this.chkMdbGrab.Properties.Caption = "Grab";
-            this.chkMdbGrab.Size = new System.Drawing.Size(108, 19);
+            this.chkMdbGrab.Size = new System.Drawing.Size(81, 19);
             this.chkMdbGrab.StyleController = this.lc;
             this.chkMdbGrab.TabIndex = 11;
             this.chkMdbGrab.ToolTip = "specifies if the EPG grabbing is run first";
@@ -582,20 +576,22 @@
             this.chkMdbRun.Location = new System.Drawing.Point(17, 140);
             this.chkMdbRun.Name = "chkMdbRun";
             this.chkMdbRun.Properties.Caption = "Run";
-            this.chkMdbRun.Size = new System.Drawing.Size(112, 19);
+            this.chkMdbRun.Size = new System.Drawing.Size(99, 19);
             this.chkMdbRun.StyleController = this.lc;
             this.chkMdbRun.TabIndex = 10;
             this.chkMdbRun.ToolTip = "runs the post process (default)";
             // 
             // chkWget
             // 
+            this.chkWget.Enabled = false;
             this.chkWget.Location = new System.Drawing.Point(412, 89);
             this.chkWget.Name = "chkWget";
             this.chkWget.Properties.Caption = "Wget";
             this.chkWget.Size = new System.Drawing.Size(62, 19);
             this.chkWget.StyleController = this.lc;
             this.chkWget.TabIndex = 9;
-            this.chkWget.ToolTip = "use wget as grab engine (might improve site recognition in rare cases)";
+            this.chkWget.ToolTip = "(DEPRECATED) use wget as grab engine (might improve site recognition in rare case" +
+    "s)";
             // 
             // chkVerify
             // 
@@ -653,8 +649,7 @@
             this.lcg.GroupBordersVisible = false;
             this.lcg.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lgMode,
-            this.lcgMdb,
-            this.lcgRex,
+            this.lcgPostprocess,
             this.lgProxy,
             this.lgOutput,
             this.lcgUserAgent,
@@ -728,63 +723,47 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // lcgMdb
+            // lcgPostprocess
             // 
-            this.lcgMdb.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lcgPostprocess.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem6,
-            this.layoutControlItem7});
-            this.lcgMdb.Location = new System.Drawing.Point(0, 105);
-            this.lcgMdb.Name = "lcgMdb";
-            this.lcgMdb.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.lcgMdb.Size = new System.Drawing.Size(238, 51);
-            this.lcgMdb.Text = "Mdb postprocess";
+            this.layoutControlItem7,
+            this.lcPostProcessCombo,
+            this.emptySpaceItem5});
+            this.lcgPostprocess.Location = new System.Drawing.Point(0, 105);
+            this.lcgPostprocess.Name = "lcgPostprocess";
+            this.lcgPostprocess.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
+            this.lcgPostprocess.Size = new System.Drawing.Size(471, 52);
+            this.lcgPostprocess.Text = "Postprocess";
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.chkMdbRun;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(116, 23);
+            this.layoutControlItem6.Size = new System.Drawing.Size(103, 24);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.chkMdbGrab;
-            this.layoutControlItem7.Location = new System.Drawing.Point(116, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(103, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(112, 23);
+            this.layoutControlItem7.Size = new System.Drawing.Size(85, 24);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // lcgRex
+            // lcPostProcessCombo
             // 
-            this.lcgRex.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem8,
-            this.layoutControlItem9});
-            this.lcgRex.Location = new System.Drawing.Point(238, 105);
-            this.lcgRex.Name = "lcgRex";
-            this.lcgRex.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.lcgRex.Size = new System.Drawing.Size(233, 51);
-            this.lcgRex.Text = "Rex postprocess";
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.chkRexRun;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(115, 23);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.chkRexGrab;
-            this.layoutControlItem9.Location = new System.Drawing.Point(115, 0);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(108, 23);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
+            this.lcPostProcessCombo.Control = this.comboPostProcess;
+            this.lcPostProcessCombo.Location = new System.Drawing.Point(188, 0);
+            this.lcPostProcessCombo.Name = "lcPostProcessCombo";
+            this.lcPostProcessCombo.Padding = new DevExpress.XtraLayout.Utils.Padding(15, 2, 2, 2);
+            this.lcPostProcessCombo.Size = new System.Drawing.Size(167, 24);
+            this.lcPostProcessCombo.Text = "Post process:";
+            this.lcPostProcessCombo.TextLocation = DevExpress.Utils.Locations.Left;
+            this.lcPostProcessCombo.TextSize = new System.Drawing.Size(66, 13);
             // 
             // lgProxy
             // 
@@ -793,7 +772,7 @@
             this.layoutControlItem13,
             this.layoutControlItem10,
             this.layoutControlItem31});
-            this.lgProxy.Location = new System.Drawing.Point(0, 156);
+            this.lgProxy.Location = new System.Drawing.Point(0, 157);
             this.lgProxy.Name = "lgProxy";
             this.lgProxy.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.lgProxy.Size = new System.Drawing.Size(471, 76);
@@ -881,7 +860,7 @@
             this.lcgUserAgent.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem14,
             this.layoutControlItem15});
-            this.lcgUserAgent.Location = new System.Drawing.Point(0, 232);
+            this.lcgUserAgent.Location = new System.Drawing.Point(0, 233);
             this.lcgUserAgent.Name = "lcgUserAgent";
             this.lcgUserAgent.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.lcgUserAgent.Size = new System.Drawing.Size(471, 34);
@@ -919,7 +898,7 @@
             this.layoutControlItem20,
             this.emptySpaceItem1,
             this.emptySpaceItem2});
-            this.lcgRetry.Location = new System.Drawing.Point(0, 266);
+            this.lcgRetry.Location = new System.Drawing.Point(0, 267);
             this.lcgRetry.Name = "lcgRetry";
             this.lcgRetry.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.lcgRetry.Size = new System.Drawing.Size(471, 76);
@@ -1006,7 +985,7 @@
             this.layoutControlItem22,
             this.emptySpaceItem3,
             this.layoutControlItem23});
-            this.lcgSkip.Location = new System.Drawing.Point(0, 342);
+            this.lcgSkip.Location = new System.Drawing.Point(0, 343);
             this.lcgSkip.Name = "lcgSkip";
             this.lcgSkip.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.lcgSkip.Size = new System.Drawing.Size(471, 52);
@@ -1029,25 +1008,25 @@
             this.layoutControlItem22.Location = new System.Drawing.Point(117, 0);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Padding = new DevExpress.XtraLayout.Utils.Padding(15, 2, 2, 2);
-            this.layoutControlItem22.Size = new System.Drawing.Size(136, 24);
+            this.layoutControlItem22.Size = new System.Drawing.Size(163, 24);
             this.layoutControlItem22.Text = "Min minutes:";
             this.layoutControlItem22.TextSize = new System.Drawing.Size(66, 13);
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(393, 0);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(402, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(68, 24);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(59, 24);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.chkNoSkip;
-            this.layoutControlItem23.Location = new System.Drawing.Point(253, 0);
+            this.layoutControlItem23.Location = new System.Drawing.Point(280, 0);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Padding = new DevExpress.XtraLayout.Utils.Padding(15, 2, 2, 2);
-            this.layoutControlItem23.Size = new System.Drawing.Size(140, 24);
+            this.layoutControlItem23.Size = new System.Drawing.Size(122, 24);
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem23.TextVisible = false;
             // 
@@ -1058,7 +1037,7 @@
             this.layoutControlItem25,
             this.layoutControlItem26,
             this.layoutControlItem27});
-            this.lcgLicense.Location = new System.Drawing.Point(0, 446);
+            this.lcgLicense.Location = new System.Drawing.Point(0, 447);
             this.lcgLicense.Name = "lcgLicense";
             this.lcgLicense.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.lcgLicense.Size = new System.Drawing.Size(471, 76);
@@ -1109,7 +1088,7 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem28,
             this.layoutControlItem29});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 522);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 523);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.layoutControlGroup1.Size = new System.Drawing.Size(471, 34);
@@ -1140,7 +1119,7 @@
             this.layoutControlItem32,
             this.emptySpaceItem4,
             this.layoutControlItem11});
-            this.lcgTimeSpan.Location = new System.Drawing.Point(0, 394);
+            this.lcgTimeSpan.Location = new System.Drawing.Point(0, 395);
             this.lcgTimeSpan.Name = "lcgTimeSpan";
             this.lcgTimeSpan.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             this.lcgTimeSpan.Size = new System.Drawing.Size(471, 52);
@@ -1179,10 +1158,10 @@
             // 
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem33});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 556);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 557);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(471, 145);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(471, 144);
             this.layoutControlGroup2.Text = "Decryption keys";
             // 
             // layoutControlItem33
@@ -1190,7 +1169,7 @@
             this.layoutControlItem33.Control = this.grid;
             this.layoutControlItem33.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem33.Name = "layoutControlItem33";
-            this.layoutControlItem33.Size = new System.Drawing.Size(461, 117);
+            this.layoutControlItem33.Size = new System.Drawing.Size(461, 116);
             this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem33.TextVisible = false;
             // 
@@ -1214,6 +1193,14 @@
             this.btnCancel.Text = "Cancel [ESC]";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(355, 0);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(106, 24);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // WebGrabConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1234,6 +1221,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WebGrabConfigForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.lc)).EndInit();
             this.lc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboPostProcess.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTimeSpanTime.Properties)).EndInit();
@@ -1258,8 +1246,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProxyAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkRexGrab.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkRexRun.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMdbGrab.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMdbRun.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkWget.Properties)).EndInit();
@@ -1275,12 +1261,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgMdb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgPostprocess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgRex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcPostProcessCombo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lgProxy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
@@ -1319,6 +1303,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1340,16 +1325,11 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlGroup lgMode;
-        private DevExpress.XtraEditors.CheckEdit chkRexGrab;
-        private DevExpress.XtraEditors.CheckEdit chkRexRun;
         private DevExpress.XtraEditors.CheckEdit chkMdbGrab;
         private DevExpress.XtraEditors.CheckEdit chkMdbRun;
-        private DevExpress.XtraLayout.LayoutControlGroup lcgMdb;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgPostprocess;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControlGroup lcgRex;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraEditors.TextEdit txtPassword;
         private DevExpress.XtraEditors.TextEdit txtUsername;
         private DevExpress.XtraEditors.TextEdit txtProxyAddress;
@@ -1416,5 +1396,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
         private DevExpress.XtraGrid.Columns.GridColumn colsite;
         private DevExpress.XtraGrid.Columns.GridColumn colValue;
+        private DevExpress.XtraEditors.ComboBoxEdit comboPostProcess;
+        private DevExpress.XtraLayout.LayoutControlItem lcPostProcessCombo;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
     }
 }
