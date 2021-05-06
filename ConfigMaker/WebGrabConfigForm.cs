@@ -411,7 +411,7 @@ namespace ConfigMaker
             }
             if (!string.IsNullOrEmpty(txtSkipMinMinutes.Text))
             {
-                skip[0] = txtSkipMinMinutes.Text;
+                skip[1] = txtSkipMinMinutes.Text;
             }
             config.skip = string.Join(",", skip);
         }
