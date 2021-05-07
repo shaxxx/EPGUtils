@@ -365,6 +365,10 @@ namespace ConfigMaker
                 //else
                 //{
                 var xmlOutputFileName = Path.Combine(Locations.OutputDirectory.FullName, txtName.Text.ToLower().Replace(" ", "_") + ".xml");
+                if (xmlOutputFileName.ToLower().StartsWith(Locations.OutputDirectory.FullName.ToLower()))
+                {
+                    xmlOutputFileName = Path.Combine("..\\..", Locations.OutputDirectory.Name, Path.GetFileName(xmlOutputFileName));
+                }
                 newConfig.Config.filename = xmlOutputFileName;
                 //}        
                 foreach (var channel in selected)

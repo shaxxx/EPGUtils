@@ -51,7 +51,14 @@ namespace ConfigMaker
             }
             else
             {
-                txtFileName.Text = config.filename;
+                if (config.filename.StartsWith("."))
+                {
+                    txtFileName.Text = new FileInfo(Path.Combine(config.Path.Directory.FullName, config.filename)).FullName;
+                }
+                else
+                {
+                    txtFileName.Text = config.filename;
+                }
             }
         }
 
@@ -295,6 +302,10 @@ namespace ConfigMaker
 
         private void UpdateConfig()
         {
+            if (txtFileName.Text.ToLower().StartsWith(Locations.OutputDirectory.FullName.ToLower()))
+            {
+                txtFileName.Text = Path.Combine("..\\..", Locations.OutputDirectory.Name, Path.GetFileName(txtFileName.Text));
+            }
             config.filename = txtFileName.Text;
             UpdateModes();
             UpdatePostProcess();
@@ -510,6 +521,10 @@ namespace ConfigMaker
                 saveFileDialog.Filter = "XMLTV file|*.xml";
                 saveFileDialog.Title = "XMLTV output file";
                 saveFileDialog.OverwritePrompt = false;
+                if (!string.IsNullOrEmpty(txtFileName.Text))
+                {
+                    saveFileDialog.FileName = txtFileName.Text;
+                }
                 if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 {
                     return;
@@ -656,7 +671,12 @@ namespace ConfigMaker
             {
                 try
                 {
-                    var fi = new FileInfo(txtFileName.Text);
+                    string actualPath = txtFileName.Text;
+                    if (actualPath.ToLower().StartsWith("."))
+                    {
+                        actualPath = new FileInfo(Path.Combine(config.Path.Directory.FullName, txtFileName.Text)).FullName;
+                    }
+                    var fi = new FileInfo(actualPath);
                     if (!fi.Exists)
                     {
                         fi.Create().Close();
