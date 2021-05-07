@@ -463,12 +463,14 @@ namespace ConfigMaker
             try
             {
                 navBarControl.Enabled = false;
+                Program.PreRunTask();
                 var listConfigurations = new ListConfigurations(Locations.UserConfigDirectory);
                 listConfigurations.StatusChanged += OnStatusChanged;
                 var configList = listConfigurations.Execute();
                 var runConfigsCommand = new RunAllConfigurations();
                 runConfigsCommand.StatusChanged += OnStatusChanged;
                 runConfigsCommand.Execute(configList, false);
+                Program.PreRunTask();
             }
             catch (Exception ex)
             {
@@ -479,6 +481,42 @@ namespace ConfigMaker
             {
                 navBarControl.Enabled = true;
                 SplashManager.CloseSplashScreen();
+            }
+        }
+
+        private void preRunTaskItem_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Task to run before all configurations";
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.PreRunTask))
+                {
+                    openFileDialog.FileName = Settings.Default.PreRunTask;
+                }
+                if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+                Properties.Settings.Default.PreRunTask = openFileDialog.FileName;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void postRunTaskItem_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Task to run after all configurations";
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.PostRunTask))
+                {
+                    openFileDialog.FileName = Settings.Default.PostRunTask;
+                }
+                if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+                Properties.Settings.Default.PostRunTask = openFileDialog.FileName;
+                Properties.Settings.Default.Save();
             }
         }
     }

@@ -113,5 +113,29 @@ namespace ConfigMaker.Properties {
                 return ((string)(this["Setting"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PreRunTask {
+            get {
+                return ((string)(this["PreRunTask"]));
+            }
+            set {
+                this["PreRunTask"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PostRunTask {
+            get {
+                return ((string)(this["PostRunTask"]));
+            }
+            set {
+                this["PostRunTask"] = value;
+            }
+        }
     }
 }

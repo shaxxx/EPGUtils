@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
             this.navBarControl = new DevExpress.XtraNavBar.NavBarControl();
@@ -46,6 +47,9 @@
             this.channelsMapItem = new DevExpress.XtraNavBar.NavBarItem();
             this.configDirectoryItem = new DevExpress.XtraNavBar.NavBarItem();
             this.outputDirectoryItem = new DevExpress.XtraNavBar.NavBarItem();
+            this.preRunTaskItem = new DevExpress.XtraNavBar.NavBarItem();
+            this.runAllConfigurationsItem = new DevExpress.XtraNavBar.NavBarItem();
+            this.postRunTaskItem = new DevExpress.XtraNavBar.NavBarItem();
             this.aboutItem = new DevExpress.XtraNavBar.NavBarItem();
             this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.grid = new DevExpress.XtraGrid.GridControl();
@@ -57,7 +61,7 @@
             this.colTotalAvailableChannels = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colConfig = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalSelectedChannels = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.barManager = new DevExpress.XtraBars.BarManager();
+            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.mFile = new DevExpress.XtraBars.BarSubItem();
             this.iNew = new DevExpress.XtraBars.BarButtonItem();
@@ -75,7 +79,6 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.mainLayoutControlGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.runAllConfigurationsItem = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
             this.splitContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl)).BeginInit();
@@ -127,7 +130,9 @@
             this.configDirectoryItem,
             this.outputDirectoryItem,
             this.runConfigurationItem,
-            this.runAllConfigurationsItem});
+            this.runAllConfigurationsItem,
+            this.preRunTaskItem,
+            this.postRunTaskItem});
             this.navBarControl.Location = new System.Drawing.Point(0, 0);
             this.navBarControl.Name = "navBarControl";
             this.navBarControl.OptionsNavPane.ExpandedWidth = 165;
@@ -157,6 +162,7 @@
             // addItem
             // 
             this.addItem.Caption = "New";
+            this.addItem.Hint = "Creates new configuration";
             this.addItem.Name = "addItem";
             this.addItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("addItem.SmallImage")));
             this.addItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.addItem_LinkClicked);
@@ -164,6 +170,7 @@
             // editConfigItem
             // 
             this.editConfigItem.Caption = "Edit";
+            this.editConfigItem.Hint = "Edit channels for selected configuration";
             this.editConfigItem.Name = "editConfigItem";
             this.editConfigItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("editConfigItem.SmallImage")));
             this.editConfigItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.editConfigItem_LinkClicked);
@@ -171,6 +178,7 @@
             // editSelectedWebGrabConfigItem
             // 
             this.editSelectedWebGrabConfigItem.Caption = "WebGrab++.config.xml";
+            this.editSelectedWebGrabConfigItem.Hint = "Edit WebGrab++.config.xml for currently selected configuration";
             this.editSelectedWebGrabConfigItem.Name = "editSelectedWebGrabConfigItem";
             this.editSelectedWebGrabConfigItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("editSelectedWebGrabConfigItem.SmallImage")));
             this.editSelectedWebGrabConfigItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.editSelectedWebGrabConfigItem_LinkClicked);
@@ -178,6 +186,7 @@
             // deleteItem
             // 
             this.deleteItem.Caption = "Delete";
+            this.deleteItem.Hint = "Delete configuration and all its files";
             this.deleteItem.Name = "deleteItem";
             this.deleteItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("deleteItem.SmallImage")));
             this.deleteItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.deleteItem_LinkClicked);
@@ -185,6 +194,7 @@
             // refreshItem
             // 
             this.refreshItem.Caption = "Refresh";
+            this.refreshItem.Hint = "Reloads configurations from disk";
             this.refreshItem.Name = "refreshItem";
             this.refreshItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("refreshItem.SmallImage")));
             this.refreshItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.refreshItem_LinkClicked);
@@ -192,6 +202,7 @@
             // runConfigurationItem
             // 
             this.runConfigurationItem.Caption = "Run configuration";
+            this.runConfigurationItem.Hint = "Runs WebGrab+Plus with one currently selected configuration";
             this.runConfigurationItem.Name = "runConfigurationItem";
             this.runConfigurationItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("runConfigurationItem.SmallImage")));
             this.runConfigurationItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.runConfigurationItem_LinkClicked);
@@ -208,7 +219,9 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.channelsMapItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.configDirectoryItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.outputDirectoryItem),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.preRunTaskItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.runAllConfigurationsItem),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.postRunTaskItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.aboutItem)});
             this.toolsGroup.Name = "toolsGroup";
             this.toolsGroup.SmallImage = ((System.Drawing.Image)(resources.GetObject("toolsGroup.SmallImage")));
@@ -216,6 +229,7 @@
             // downloadSiteIniItem
             // 
             this.downloadSiteIniItem.Caption = "Download siteini.pack";
+            this.downloadSiteIniItem.Hint = "Downloads fresh siteini.pack from internet to working folder";
             this.downloadSiteIniItem.Name = "downloadSiteIniItem";
             this.downloadSiteIniItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("downloadSiteIniItem.SmallImage")));
             this.downloadSiteIniItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.downloadSiteIni_LinkClicked);
@@ -223,6 +237,7 @@
             // editWebgrabConfigItem
             // 
             this.editWebgrabConfigItem.Caption = "WebGrab++.config.xml";
+            this.editWebgrabConfigItem.Hint = "Edit main WebGrab++.config.xml used as a template for new configurations";
             this.editWebgrabConfigItem.Name = "editWebgrabConfigItem";
             this.editWebgrabConfigItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("editWebgrabConfigItem.SmallImage")));
             this.editWebgrabConfigItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.editWebgrabConfigItem_LinkClicked);
@@ -230,6 +245,7 @@
             // updateSiteInisItem
             // 
             this.updateSiteInisItem.Caption = "Update siteini.user";
+            this.updateSiteInisItem.Hint = "Updates siteini files from siteini.pack to user configurations";
             this.updateSiteInisItem.Name = "updateSiteInisItem";
             this.updateSiteInisItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateSiteInisItem.SmallImage")));
             this.updateSiteInisItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.updateSiteInis_LinkClicked);
@@ -237,6 +253,7 @@
             // updateSiteKeys
             // 
             this.updateSiteKeys.Caption = "Update site keys";
+            this.updateSiteKeys.Hint = "Updates site keys from main WebGrab++.config.xml to user configurations";
             this.updateSiteKeys.Name = "updateSiteKeys";
             this.updateSiteKeys.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateSiteKeys.SmallImage")));
             this.updateSiteKeys.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.updateSiteKeys_LinkClicked);
@@ -244,6 +261,7 @@
             // channelsMapItem
             // 
             this.channelsMapItem.Caption = "channels.xml map";
+            this.channelsMapItem.Hint = "Create mapping file for enigma2 epgimport plugin.";
             this.channelsMapItem.Name = "channelsMapItem";
             this.channelsMapItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("channelsMapItem.SmallImage")));
             this.channelsMapItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.channelsMapItem_LinkClicked);
@@ -251,6 +269,7 @@
             // configDirectoryItem
             // 
             this.configDirectoryItem.Caption = "Configurations directory";
+            this.configDirectoryItem.Hint = "Open directory containing all configurations in Windows explorer";
             this.configDirectoryItem.Name = "configDirectoryItem";
             this.configDirectoryItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("configDirectoryItem.SmallImage")));
             this.configDirectoryItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.workingDirectoryItem_LinkClicked);
@@ -258,9 +277,34 @@
             // outputDirectoryItem
             // 
             this.outputDirectoryItem.Caption = "Output directory";
+            this.outputDirectoryItem.Hint = "Open XMLTV output directory in Windows explorer";
             this.outputDirectoryItem.Name = "outputDirectoryItem";
             this.outputDirectoryItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("outputDirectoryItem.SmallImage")));
             this.outputDirectoryItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.outputDirectoryItem_LinkClicked);
+            // 
+            // preRunTaskItem
+            // 
+            this.preRunTaskItem.Caption = "Pre Run Task";
+            this.preRunTaskItem.Hint = "Select task to be run automatically before all configurations";
+            this.preRunTaskItem.Name = "preRunTaskItem";
+            this.preRunTaskItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("preRunTaskItem.SmallImage")));
+            this.preRunTaskItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.preRunTaskItem_LinkClicked);
+            // 
+            // runAllConfigurationsItem
+            // 
+            this.runAllConfigurationsItem.Caption = "Run all configurations";
+            this.runAllConfigurationsItem.Hint = "Runs WebGrab+Plus for all configurations. One by one.";
+            this.runAllConfigurationsItem.Name = "runAllConfigurationsItem";
+            this.runAllConfigurationsItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("runAllConfigurationsItem.SmallImage")));
+            this.runAllConfigurationsItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.runAllConfigurationsItem_LinkClicked);
+            // 
+            // postRunTaskItem
+            // 
+            this.postRunTaskItem.Caption = "Post Run Task";
+            this.postRunTaskItem.Hint = "Select task to be run automatically after all configurations finish";
+            this.postRunTaskItem.Name = "postRunTaskItem";
+            this.postRunTaskItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("postRunTaskItem.SmallImage")));
+            this.postRunTaskItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.postRunTaskItem_LinkClicked);
             // 
             // aboutItem
             // 
@@ -540,13 +584,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // runAllConfigurationsItem
-            // 
-            this.runAllConfigurationsItem.Caption = "Run all configurations";
-            this.runAllConfigurationsItem.Name = "runAllConfigurationsItem";
-            this.runAllConfigurationsItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("runAllConfigurationsItem.SmallImage")));
-            this.runAllConfigurationsItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.runAllConfigurationsItem_LinkClicked);
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,5 +662,7 @@
         private DevExpress.XtraNavBar.NavBarItem outputDirectoryItem;
         private DevExpress.XtraNavBar.NavBarItem runConfigurationItem;
         private DevExpress.XtraNavBar.NavBarItem runAllConfigurationsItem;
+        private DevExpress.XtraNavBar.NavBarItem preRunTaskItem;
+        private DevExpress.XtraNavBar.NavBarItem postRunTaskItem;
     }
 }

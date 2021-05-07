@@ -86,6 +86,7 @@
     <Compile Include="Commands\ListCountries.cs" />
     <Compile Include="Commands\ListConfigurations.cs" />
     <Compile Include="Commands\RunAllConfigurations.cs" />
+    <Compile Include="Commands\RunProcess.cs" />
     <Compile Include="Commands\RunConfiguration.cs" />
     <Compile Include="Commands\LoadConfiguration.cs" />
     <Compile Include="Commands\DeleteConfiguration.cs" />
@@ -159,7 +160,9 @@
     <EmbeddedResource Include="WebGrabConfigForm.resx">
       <DependentUpon>WebGrabConfigForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ConfigMaker.log4net">
       <SubType>Designer</SubType>
     </None>

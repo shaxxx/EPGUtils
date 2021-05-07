@@ -75,6 +75,7 @@ namespace ConfigMaker
 
         private static void RunAll(bool compress)
         {
+            PreRunTask();
             var listConfigurations = new ListConfigurations(Locations.UserConfigDirectory);
             var configList = listConfigurations.Execute();
             var runConfigsCommand = new RunAllConfigurations();
@@ -91,6 +92,39 @@ namespace ConfigMaker
                     }
                 }
             }
+            PostRunTask();
+        }
+
+        public static void PreRunTask()
+        {
+            if (string.IsNullOrEmpty(Settings.Default.PreRunTask))
+            {
+                Log.Info("Pre Run Task not defined, skipping...");
+                return;
+            }
+            if (!File.Exists(Settings.Default.PreRunTask))
+            {
+                Log.Error(string.Format("Pre Run Task {0} doesn't exist, skipping...", Settings.Default.PreRunTask));
+                return;
+            }
+            var runTask = new RunProcess();
+            runTask.Execute(Settings.Default.PreRunTask, null, true);
+        }
+
+        public static void PostRunTask()
+        {
+            if (string.IsNullOrEmpty(Settings.Default.PostRunTask))
+            {
+                Log.Info("Post Run Task not defined, skipping...");
+                return;
+            }
+            if (!File.Exists(Settings.Default.PostRunTask))
+            {
+                Log.Error(string.Format("Post Run Task {0} doesn't exist, skipping...", Settings.Default.PostRunTask));
+                return;
+            }
+            var runTask = new RunProcess();
+            runTask.Execute(Settings.Default.PostRunTask, null, true);
         }
     }
 }
