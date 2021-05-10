@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ConfigMaker.Commands;
+using ConfigMaker.Model;
 using ConfigMaker.Properties;
 using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
@@ -32,6 +33,7 @@ namespace ConfigMaker
             Log.Info("Entering application.");
             bool runnAll = false;
             bool compress = false;
+            bool channelsMap = false;
 
             if (args.ToList().Any(x => x.ToLower() == "/runall"))
             {
@@ -39,6 +41,10 @@ namespace ConfigMaker
                 if (args.ToList().Any(x => x.ToLower() == "/compress"))
                 {
                     compress = true;
+                }
+                if (args.ToList().Any(x => x.ToLower() == "/channelsmap"))
+                {
+                    channelsMap = true;
                 }
             }
 
@@ -65,7 +71,7 @@ namespace ConfigMaker
             }
             if (runnAll)
             {
-                RunAll(compress);
+                RunAll(compress, channelsMap);
                 return;
             }
 
@@ -73,7 +79,7 @@ namespace ConfigMaker
             Log.Info("Exiting application.");
         }
 
-        private static void RunAll(bool compress)
+        private static void RunAll(bool compress, bool channelsMap)
         {
             PreRunTask();
             var listConfigurations = new ListConfigurations(Locations.UserConfigDirectory);
@@ -91,6 +97,13 @@ namespace ConfigMaker
                         zip.Save(zipFileName);
                     }
                 }
+            }
+            if (channelsMap)
+            {
+                var map = new ChannelMap();
+                map.Configurations = configList;
+                var mapFileName = Path.Combine(Locations.OutputDirectory.FullName, Settings.Default.ChannelsXmlFileName);
+                map.SaveToFile(mapFileName);
             }
             PostRunTask();
         }

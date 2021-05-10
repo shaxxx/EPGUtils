@@ -65,11 +65,6 @@ namespace ConfigMaker.Model
             {
                 if (previousCountry != null)
                 {
-                    if (!string.Equals(previousSite, item.Site))
-                    {
-                        sb.Append('\t');
-                        sb.AppendLine(string.Format("<!-- {0} End -->", previousSite));
-                    }
                     if (!string.Equals(previousCountry, item.Country))
                     {
                         sb.AppendLine(string.Format("<!-- {0} End -->", previousCountry));
@@ -78,11 +73,6 @@ namespace ConfigMaker.Model
                 if (!string.Equals(previousCountry, item.Country))
                 {
                     sb.AppendLine(string.Format("<!-- {0} Start -->", item.Country));
-                }
-                if (!string.Equals(previousSite, item.Site))
-                {
-                    sb.Append('\t');
-                    sb.AppendLine(string.Format("<!-- {0} Start -->", item.Site));
                 }
                 sb.Append('\t');
                 sb.AppendLine(
@@ -96,7 +86,6 @@ namespace ConfigMaker.Model
             if (mapItems.Count > 0)
             {
                 sb.Append('\t');
-                sb.AppendLine(string.Format("<!-- {0} End -->", mapItems.Last().Site));
                 sb.AppendLine(string.Format("<!-- {0} End -->", mapItems.Last().Country));
             }
             sb.AppendLine("</channels>");
