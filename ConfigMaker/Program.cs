@@ -93,7 +93,7 @@ namespace ConfigMaker
                     using (ZipFile zip = new ZipFile())
                     {
                         var zipFileName = Path.Combine(Locations.OutputDirectory.FullName, Path.GetFileNameWithoutExtension(file.Name) + ".zip");
-                        zip.AddFile(file.FullName);
+                        zip.AddFile(file.FullName,"");
                         zip.Save(zipFileName);
                     }
                 }
