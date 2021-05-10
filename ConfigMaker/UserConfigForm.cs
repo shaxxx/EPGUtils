@@ -549,5 +549,15 @@ namespace ConfigMaker
                 }
             }
         }
+
+        private void btnExpandAll_Click(object sender, EventArgs e)
+        {
+            gvChannels.ExpandAllGroups();
+        }
+
+        private void btnColapseAll_Click(object sender, EventArgs e)
+        {
+            gvChannels.CollapseAllGroups();
+        }
     }
 }
