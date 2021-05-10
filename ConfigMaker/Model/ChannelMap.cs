@@ -85,7 +85,6 @@ namespace ConfigMaker.Model
 
             if (mapItems.Count > 0)
             {
-                sb.Append('\t');
                 sb.AppendLine(string.Format("<!-- {0} End -->", mapItems.Last().Country));
             }
             sb.AppendLine("</channels>");
