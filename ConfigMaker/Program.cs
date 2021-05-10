@@ -34,6 +34,7 @@ namespace ConfigMaker
             bool runnAll = false;
             bool compress = false;
             bool channelsMap = false;
+            bool gzip = false;
 
             if (args.ToList().Any(x => x.ToLower() == "/runall"))
             {
@@ -41,6 +42,10 @@ namespace ConfigMaker
                 if (args.ToList().Any(x => x.ToLower() == "/compress"))
                 {
                     compress = true;
+                    if (args.ToList().Any(x => x.ToLower() == "/gzip"))
+                    {
+                        gzip = true;
+                    }
                 }
                 if (args.ToList().Any(x => x.ToLower() == "/channelsmap"))
                 {
@@ -71,7 +76,7 @@ namespace ConfigMaker
             }
             if (runnAll)
             {
-                RunAll(compress, channelsMap);
+                RunAll(compress, channelsMap, gzip);
                 return;
             }
 
@@ -79,7 +84,7 @@ namespace ConfigMaker
             Log.Info("Exiting application.");
         }
 
-        private static void RunAll(bool compress, bool channelsMap)
+        private static void RunAll(bool compress, bool channelsMap, bool gzip)
         {
             PreRunTask();
             var listConfigurations = new ListConfigurations(Locations.UserConfigDirectory);
@@ -90,11 +95,17 @@ namespace ConfigMaker
             {
                 foreach (var file in Locations.OutputDirectory.GetFiles("*.xml"))
                 {
-                    using (ZipFile zip = new ZipFile())
+                    if (!gzip)
                     {
-                        var zipFileName = Path.Combine(Locations.OutputDirectory.FullName, Path.GetFileNameWithoutExtension(file.Name) + ".zip");
-                        zip.AddFile(file.FullName,"");
-                        zip.Save(zipFileName);
+                        using (ZipFile zip = new ZipFile())
+                        {
+                            var zipFileName = Path.Combine(Locations.OutputDirectory.FullName, Path.GetFileNameWithoutExtension(file.Name) + ".zip");
+                            zip.AddFile(file.FullName, "");
+                            zip.Save(zipFileName);
+                        }
+                    } else
+                    {
+                        GZip(file.FullName, true);
                     }
                 }
             }
@@ -139,5 +150,43 @@ namespace ConfigMaker
             var runTask = new RunProcess();
             runTask.Execute(Settings.Default.PostRunTask, null, true);
         }
+
+        static string GZip(string fname, bool forceOverwrite)
+        {
+            var outFname = Path.Combine(Locations.OutputDirectory.FullName, Path.GetFileName(fname) + ".gz");
+            if (File.Exists(outFname))
+            {
+                if (forceOverwrite)
+                    File.Delete(outFname);
+                else
+                    return null;
+            }
+
+            using (var fs = File.OpenRead(fname))
+            {
+                using (var output = File.Create(outFname))
+                {
+                    using (var compressor = new Ionic.Zlib.GZipStream(output, Ionic.Zlib.CompressionMode.Compress))
+                    {
+                        compressor.FileName = fname;
+                        var fi = new FileInfo(fname);
+                        compressor.LastModified = fi.LastWriteTime;
+                        Pump(fs, compressor);
+                    }
+                }
+            }
+            return outFname;
+        }
+
+        private static void Pump(Stream src, Stream dest)
+        {
+            byte[] buffer = new byte[2048];
+            int n;
+            while ((n = src.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                dest.Write(buffer, 0, n);
+            }
+        }
+
     }
 }
