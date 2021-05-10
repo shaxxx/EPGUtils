@@ -555,7 +555,7 @@ namespace ConfigMaker
             gvChannels.ExpandAllGroups();
         }
 
-        private void btnColapseAll_Click(object sender, EventArgs e)
+        private void btnCollapseAll_Click(object sender, EventArgs e)
         {
             gvChannels.CollapseAllGroups();
         }

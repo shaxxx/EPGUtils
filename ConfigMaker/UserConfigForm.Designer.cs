@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserConfigForm));
             this.lc = new DevExpress.XtraLayout.LayoutControl();
+            this.btnExpandAll = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCollapseAll = new DevExpress.XtraEditors.SimpleButton();
             this.chkRemoveHypens = new DevExpress.XtraEditors.CheckEdit();
             this.btnXmltvId = new DevExpress.XtraEditors.SimpleButton();
             this.chkXmltvSmart = new DevExpress.XtraEditors.CheckEdit();
@@ -71,12 +73,10 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgName = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnColapseAll = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnExpandAll = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lc)).BeginInit();
             this.lc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkRemoveHypens.Properties)).BeginInit();
@@ -105,16 +105,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // lc
             // 
             this.lc.Controls.Add(this.btnExpandAll);
-            this.lc.Controls.Add(this.btnColapseAll);
+            this.lc.Controls.Add(this.btnCollapseAll);
             this.lc.Controls.Add(this.chkRemoveHypens);
             this.lc.Controls.Add(this.btnXmltvId);
             this.lc.Controls.Add(this.chkXmltvSmart);
@@ -133,6 +133,28 @@
             this.lc.Size = new System.Drawing.Size(800, 512);
             this.lc.TabIndex = 0;
             this.lc.Text = "layoutControl1";
+            // 
+            // btnExpandAll
+            // 
+            this.btnExpandAll.Location = new System.Drawing.Point(318, 478);
+            this.btnExpandAll.Name = "btnExpandAll";
+            this.btnExpandAll.Size = new System.Drawing.Size(86, 22);
+            this.btnExpandAll.StyleController = this.lc;
+            this.btnExpandAll.TabIndex = 13;
+            this.btnExpandAll.Text = "Expand all";
+            this.btnExpandAll.ToolTip = "Expands all groups in channels grid";
+            this.btnExpandAll.Click += new System.EventHandler(this.btnExpandAll_Click);
+            // 
+            // btnCollapseAll
+            // 
+            this.btnCollapseAll.Location = new System.Drawing.Point(421, 478);
+            this.btnCollapseAll.Name = "btnCollapseAll";
+            this.btnCollapseAll.Size = new System.Drawing.Size(90, 22);
+            this.btnCollapseAll.StyleController = this.lc;
+            this.btnCollapseAll.TabIndex = 12;
+            this.btnCollapseAll.Text = "Collapse all";
+            this.btnCollapseAll.ToolTip = "Colapses all groups in channels grid";
+            this.btnCollapseAll.Click += new System.EventHandler(this.btnCollapseAll_Click);
             // 
             // chkRemoveHypens
             // 
@@ -579,6 +601,32 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.btnCollapseAll;
+            this.layoutControlItem11.Location = new System.Drawing.Point(409, 453);
+            this.layoutControlItem11.MaxSize = new System.Drawing.Size(192, 39);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(192, 39);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 100, 15, 2);
+            this.layoutControlItem11.Size = new System.Drawing.Size(192, 39);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem11.TextVisible = false;
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.btnExpandAll;
+            this.layoutControlItem12.Location = new System.Drawing.Point(306, 453);
+            this.layoutControlItem12.MaxSize = new System.Drawing.Size(103, 39);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(103, 39);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 15, 15, 2);
+            this.layoutControlItem12.Size = new System.Drawing.Size(103, 39);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem12.TextVisible = false;
+            // 
             // lcgName
             // 
             this.lcgName.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -600,54 +648,6 @@
             this.layoutControlItem10.Text = "Name:";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
-            // 
-            // btnColapseAll
-            // 
-            this.btnColapseAll.Location = new System.Drawing.Point(421, 478);
-            this.btnColapseAll.Name = "btnColapseAll";
-            this.btnColapseAll.Size = new System.Drawing.Size(90, 22);
-            this.btnColapseAll.StyleController = this.lc;
-            this.btnColapseAll.TabIndex = 12;
-            this.btnColapseAll.Text = "Colapse All";
-            this.btnColapseAll.ToolTip = "Colapses all groups in channels grid";
-            this.btnColapseAll.Click += new System.EventHandler(this.btnColapseAll_Click);
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.btnColapseAll;
-            this.layoutControlItem11.Location = new System.Drawing.Point(409, 453);
-            this.layoutControlItem11.MaxSize = new System.Drawing.Size(192, 39);
-            this.layoutControlItem11.MinSize = new System.Drawing.Size(192, 39);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 100, 15, 2);
-            this.layoutControlItem11.Size = new System.Drawing.Size(192, 39);
-            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem11.TextVisible = false;
-            // 
-            // btnExpandAll
-            // 
-            this.btnExpandAll.Location = new System.Drawing.Point(318, 478);
-            this.btnExpandAll.Name = "btnExpandAll";
-            this.btnExpandAll.Size = new System.Drawing.Size(86, 22);
-            this.btnExpandAll.StyleController = this.lc;
-            this.btnExpandAll.TabIndex = 13;
-            this.btnExpandAll.Text = "Expand All";
-            this.btnExpandAll.ToolTip = "Expands all groups in channels grid";
-            this.btnExpandAll.Click += new System.EventHandler(this.btnExpandAll_Click);
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.btnExpandAll;
-            this.layoutControlItem12.Location = new System.Drawing.Point(306, 453);
-            this.layoutControlItem12.MaxSize = new System.Drawing.Size(103, 39);
-            this.layoutControlItem12.MinSize = new System.Drawing.Size(103, 39);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 15, 15, 2);
-            this.layoutControlItem12.Size = new System.Drawing.Size(103, 39);
-            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
             // 
             // UserConfigForm
             // 
@@ -690,10 +690,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -745,7 +745,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup lcgName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraEditors.SimpleButton btnExpandAll;
-        private DevExpress.XtraEditors.SimpleButton btnColapseAll;
+        private DevExpress.XtraEditors.SimpleButton btnCollapseAll;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
     }
