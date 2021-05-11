@@ -49,7 +49,6 @@ namespace ConfigMaker.Model
             })
             .Distinct()
             .OrderBy(x=> x.Country)
-            .ThenBy(x=>x.Site)
             .ThenBy(x=>x.XmltvId)
             .ToList();
 
