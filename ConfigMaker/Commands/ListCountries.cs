@@ -64,10 +64,13 @@ namespace ConfigMaker.Commands
             foreach (var config in country.Path.GetFiles("*.channels.xml"))
             {
                 var site = LoadSiteConfig(config);
-                //CheckSiteIniExists(country.Path, site);
-                site.Country = country;
-                sites.Add(site);
-                Log.Debug(string.Format("Found site {0} in {1}", site.site1, country.Path.FullName));
+                if (site != null)
+                {
+                    //CheckSiteIniExists(country.Path, site);
+                    site.Country = country;
+                    sites.Add(site);
+                    Log.Debug(string.Format("Found site {0} in {1}", site.site1, country.Path.FullName));
+                }
             }
             Log.Debug(string.Format("Found {0} sites in {1}", sites.Count, country.Path.FullName));
             return sites;
@@ -76,14 +79,23 @@ namespace ConfigMaker.Commands
         private site LoadSiteConfig(FileInfo siteConfigFile)
         {
             Log.Debug(string.Format("Loading site {0}", siteConfigFile.FullName));
-            var siteConfig = site.LoadFromFile(siteConfigFile.FullName);
-            siteConfig.Path = siteConfigFile;
-            foreach (var channel in siteConfig.channels)
+            try
             {
-                channel.ParentSite = siteConfig;
+                var siteConfig = site.LoadFromFile(siteConfigFile.FullName);
+                siteConfig.Path = siteConfigFile;
+                foreach (var channel in siteConfig.channels)
+                {
+                    channel.ParentSite = siteConfig;
+                }
+                Log.Debug(string.Format("Site {0} loaded", siteConfig.site1));
+                return siteConfig;
             }
-            Log.Debug(string.Format("Site {0} loaded", siteConfig.site1));
-            return siteConfig;
+            catch (Exception ex)
+            {
+                Log.Error(string.Format("Failed to load site config{2}{0}{1}", Environment.NewLine, ex.Message, siteConfigFile), ex);
+                return null;
+            }
+
         }
 
         private bool CheckSiteIniExists(DirectoryInfo countryDirectory, site site)
